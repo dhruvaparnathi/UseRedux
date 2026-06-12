@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ── Reset ── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ── Light theme tokens ── */
+.app.light {
+  --bg-primary: #f0f2f5;
+  --bg-card: #ffffff;
+  --text-primary: #1a1a2e;
+  --text-secondary: #6b7280;
+  --accent: #6366f1;
+  --accent-hover: #4f46e5;
+  --increment: #10b981;
+  --increment-hover: #059669;
+  --decrement: #f43f5e;
+  --decrement-hover: #e11d48;
+  --clear: #8b5cf6;
+  --clear-hover: #7c3aed;
+  --toggle: #6366f1;
+  --toggle-hover: #4f46e5;
+  --divider: #e5e7eb;
+  --shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 8px 20px rgba(0, 0, 0, 0.04);
+  --btn-text: #ffffff;
+  --count-gradient: linear-gradient(135deg, #6366f1, #8b5cf6);
+}
+
+/* ── Dark theme tokens ── */
+.app.dark {
+  --bg-primary: #0f0f1a;
+  --bg-card: #1a1a2e;
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --accent: #818cf8;
+  --accent-hover: #6366f1;
+  --increment: #34d399;
+  --increment-hover: #10b981;
+  --decrement: #fb7185;
+  --decrement-hover: #f43f5e;
+  --clear: #a78bfa;
+  --clear-hover: #8b5cf6;
+  --toggle: #818cf8;
+  --toggle-hover: #6366f1;
+  --divider: #2d2d44;
+  --shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 8px 20px rgba(0, 0, 0, 0.3);
+  --btn-text: #0f0f1a;
+  --count-gradient: linear-gradient(135deg, #818cf8, #a78bfa);
+}
+
+/* ── Full-page container ── */
+.app {
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-primary);
+  transition: background-color 0.4s ease;
+}
+
+/* ── Glassmorphism card ── */
+.card {
+  background: var(--bg-card);
+  border-radius: 24px;
+  padding: 48px 56px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  max-width: 440px;
+  width: 90%;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+  border: 1px solid var(--divider);
+}
+
+/* ── Counter title ── */
+.counter-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 28px;
+  transition: color 0.4s ease;
+}
+
+.count-value {
+  font-weight: 800;
+  font-size: 2rem;
+  background: var(--count-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Button group ── */
+.btn-group {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ── Base button ── */
+.btn {
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--btn-text);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.3px;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.15);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.btn:hover::after {
+  opacity: 1;
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+/* ── Button variants ── */
+.btn-increment {
+  background: var(--increment);
+}
+.btn-increment:hover {
+  background: var(--increment-hover);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+}
+
+.btn-decrement {
+  background: var(--decrement);
+}
+.btn-decrement:hover {
+  background: var(--decrement-hover);
+  box-shadow: 0 4px 16px rgba(244, 63, 94, 0.4);
+}
+
+.btn-clear {
+  background: var(--clear);
+}
+.btn-clear:hover {
+  background: var(--clear-hover);
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.4);
+}
+
+/* ── Divider ── */
+.divider {
+  height: 1px;
+  background: var(--divider);
+  margin: 32px 0;
+  transition: background 0.4s ease;
+}
+
+/* ── Theme section ── */
+.theme-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  transition: color 0.4s ease;
+}
+
+.theme-value {
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: capitalize;
+}
+
+.btn-theme {
+  background: var(--toggle);
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-size: 0.95rem;
+}
+.btn-theme:hover {
+  background: var(--toggle-hover);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+}
