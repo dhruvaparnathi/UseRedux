@@ -32,7 +32,7 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-3">
             <span className="text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full">
-              v1.0.0
+              Find Your Media Here
             </span>
           </div>
         </div>
@@ -62,12 +62,12 @@ export default function Home() {
         </div>
       </main>
 
-      {/* Clean Footer */}
+      {/* Clean Footer
       <footer className="border-t border-slate-200 bg-white py-8 mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-400 font-medium">
           <p>&copy; {new Date().getFullYear()} MediaFinder App. Developed with premium Tailwind CSS styling.</p>
         </div>
-      </footer>
+      </footer> */}
     </div>
   );
 }

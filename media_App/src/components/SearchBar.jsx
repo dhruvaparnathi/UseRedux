@@ -6,7 +6,7 @@ export default function SearchBar() {
   const dispatch = useDispatch();
   const reduxQuery = useSelector((state) => state.search.query);
   const [localQuery, setLocalQuery] = useState(reduxQuery);
-  
+
 
   // Keep local query in sync if redux query changes externally
   useEffect(() => {

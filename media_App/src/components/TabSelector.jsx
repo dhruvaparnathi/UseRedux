@@ -78,11 +78,10 @@ export default function TabSelector() {
             <button
               key={tab.id}
               onClick={() => dispatch(setActiveTab(tab.id))}
-              className={`flex items-center py-4 px-3 border-b-2 font-medium text-sm transition-all focus:outline-none cursor-pointer ${
-                isActive
+              className={`flex items-center py-4 px-3 border-b-2 font-medium text-sm transition-all focus:outline-none cursor-pointer ${isActive
                   ? 'border-slate-900 text-slate-900'
                   : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300'
-              }`}
+                }`}
             >
               {tab.icon}
               {tab.label}
