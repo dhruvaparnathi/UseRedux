@@ -8,9 +8,9 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [react(), tailwindcss()],
     define: {
-      'process.env.UNSPLASH_API_KEY': JSON.stringify(env.UNSPLASH_API_KEY),
-      'process.env.PEXELS_API_KEY': JSON.stringify(env.PEXELS_API_KEY),
-      'process.env.GIPHY_API_KEY': JSON.stringify(env.GIPHY_API_KEY),
+      'process.env.UNSPLASH_API_KEY': JSON.stringify(env.UNSPLASH_API_KEY || process.env.UNSPLASH_API_KEY || ''),
+      'process.env.PEXELS_API_KEY': JSON.stringify(env.PEXELS_API_KEY || process.env.PEXELS_API_KEY || ''),
+      'process.env.GIPHY_API_KEY': JSON.stringify(env.GIPHY_API_KEY || process.env.GIPHY_API_KEY || ''),
     }
   };
 })

@@ -80,7 +80,7 @@ export default function MediaGrid({ collection, onToggleCollect }) {
           </svg>
         </div>
         <h3 className="text-red-900 font-semibold text-lg mb-1">Search Failed</h3>
-        <p className="text-red-600 text-sm">{error.message || String(error)}</p>
+        <p className="text-red-600 text-sm">{String(error)}</p>
       </div>
     );
   }
