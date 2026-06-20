@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 
 // --- IMAGE CARD ---
-function ImageCard({ item }) {
+function ImageCard({ item, isCollected, onToggleCollect }) {
   const imageUrl = item.urls?.regular || item.urls?.small || item.src?.medium;
   const authorName = item.user?.name || item.photographer || 'Unknown Artist';
   const authorProfile = item.user?.profile_image?.small;
@@ -19,6 +19,33 @@ function ImageCard({ item }) {
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
         />
+        {/* Collect button */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggleCollect('images', item);
+          }}
+          className={`absolute top-3 right-3 z-10 p-2 rounded-xl backdrop-blur-md shadow-sm transition-all duration-300 hover:scale-110 cursor-pointer ${
+            isCollected
+              ? 'bg-rose-50/95 text-rose-600 border border-rose-200/60 scale-105 opacity-100'
+              : 'bg-white/80 hover:bg-white text-slate-600 border border-slate-200/40 opacity-0 group-hover:opacity-100'
+          }`}
+          title={isCollected ? "Remove from collection" : "Save to collection"}
+        >
+          <svg
+            className={`w-4 h-4 ${isCollected ? 'fill-current' : 'fill-none'}`}
+            stroke="currentColor"
+            strokeWidth="2.5"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+            />
+          </svg>
+        </button>
         {/* Hover overlay with action buttons */}
         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-4">
           <div className="flex items-center gap-2 text-white">
@@ -93,7 +120,7 @@ function ImageCard({ item }) {
 }
 
 // --- VIDEO CARD ---
-function VideoCard({ item }) {
+function VideoCard({ item, isCollected, onToggleCollect }) {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -150,6 +177,34 @@ function VideoCard({ item }) {
             No video preview
           </div>
         )}
+
+        {/* Collect button */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggleCollect('videos', item);
+          }}
+          className={`absolute top-3 right-3 z-10 p-2 rounded-xl backdrop-blur-md shadow-sm transition-all duration-300 hover:scale-110 cursor-pointer ${
+            isCollected
+              ? 'bg-rose-50/95 text-rose-600 border border-rose-200/60 scale-105 opacity-100'
+              : 'bg-white/80 hover:bg-white text-slate-600 border border-slate-200/40 opacity-0 group-hover:opacity-100'
+          }`}
+          title={isCollected ? "Remove from collection" : "Save to collection"}
+        >
+          <svg
+            className={`w-4 h-4 ${isCollected ? 'fill-current' : 'fill-none'}`}
+            stroke="currentColor"
+            strokeWidth="2.5"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+            />
+          </svg>
+        </button>
 
         {/* Video badge: duration */}
         {duration && (
@@ -218,7 +273,7 @@ function VideoCard({ item }) {
 }
 
 // --- GIF CARD ---
-function GifCard({ item }) {
+function GifCard({ item, isCollected, onToggleCollect }) {
   const gifUrl = item.images?.fixed_height?.url || item.images?.original?.url;
   const title = item.title || 'Giphy GIF';
   const author = item.username ? `@${item.username}` : 'Giphy Creator';
@@ -233,6 +288,33 @@ function GifCard({ item }) {
           className="w-full h-full object-cover"
           loading="lazy"
         />
+        {/* Collect button */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggleCollect('gifs', item);
+          }}
+          className={`absolute top-3 right-3 z-10 p-2 rounded-xl backdrop-blur-md shadow-sm transition-all duration-300 hover:scale-110 cursor-pointer ${
+            isCollected
+              ? 'bg-rose-50/95 text-rose-600 border border-rose-200/60 scale-105 opacity-100'
+              : 'bg-white/80 hover:bg-white text-slate-600 border border-slate-200/40 opacity-0 group-hover:opacity-100'
+          }`}
+          title={isCollected ? "Remove from collection" : "Save to collection"}
+        >
+          <svg
+            className={`w-4 h-4 ${isCollected ? 'fill-current' : 'fill-none'}`}
+            stroke="currentColor"
+            strokeWidth="2.5"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+            />
+          </svg>
+        </button>
         <div className="absolute top-3 left-3 bg-black/75 backdrop-blur-sm text-white text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded">
           GIF
         </div>
@@ -279,17 +361,17 @@ function GifCard({ item }) {
 }
 
 // --- MAIN WRAPPER CARD ---
-export default function MediaCard({ item, type }) {
+export default function MediaCard({ item, type, isCollected, onToggleCollect }) {
   if (!item) return null;
 
   // Render correct card based on the activeTab/type
   switch (type) {
     case 'videos':
-      return <VideoCard item={item} />;
+      return <VideoCard item={item} isCollected={isCollected} onToggleCollect={onToggleCollect} />;
     case 'gifs':
-      return <GifCard item={item} />;
+      return <GifCard item={item} isCollected={isCollected} onToggleCollect={onToggleCollect} />;
     case 'images':
     default:
-      return <ImageCard item={item} />;
+      return <ImageCard item={item} isCollected={isCollected} onToggleCollect={onToggleCollect} />;
   }
 }

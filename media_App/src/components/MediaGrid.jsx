@@ -19,7 +19,7 @@ function SkeletonCard({ type }) {
   );
 }
 
-export default function MediaGrid() {
+export default function MediaGrid({ collection, onToggleCollect }) {
   const { results, activeTab, loading, error, query } = useSelector((state) => state.search);
 
   // Helper to extract the list items robustly from various API formats or flat arrays
@@ -152,11 +152,23 @@ export default function MediaGrid() {
   }
 
   // 5. Results Grid
+  const key = activeTab === 'images' ? 'imgData' : activeTab === 'videos' ? 'videoData' : 'gifData';
+  const collectionList = collection?.[key] || [];
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      {items.map((item) => (
-        <MediaCard key={item.id || item.link || Math.random()} item={item} type={activeTab} />
-      ))}
+      {items.map((item, index) => {
+        const isCollected = collectionList.some((x) => x.id === item.id);
+        return (
+          <MediaCard
+            key={item.id || item.link || index}
+            item={item}
+            type={activeTab}
+            isCollected={isCollected}
+            onToggleCollect={onToggleCollect}
+          />
+        );
+      })}
     </div>
   );
 }
